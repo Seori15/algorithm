@@ -1,0 +1,10 @@
+# A와 B의 곱셈 과정 출력하기
+A = int(input())
+B = int(input())
+a = A * (B % 10)
+b = A * ((B // 10) % 10)
+c = A * (B // 100)
+print(a)
+print(b)
+print(c)
+print(100 * c + 10 * b + a)
