@@ -1,16 +1,12 @@
 # DFS 함수 설정
+# DFS 함수를 거쳐서 visited에 cnt값을 저장한다.
 def DFS(start, cnt):
-    global sum_cnt
-    flag = 0
+    visited[start] = cnt
+
+    cnt += 1
     for i in tree[start]:
         if not visited[i]:
-            visited[i] = 1
-            cnt += 1
             DFS(i, cnt)
-            cnt -= 1
-            flag = 1
-    if flag == 0:
-        sum_cnt += cnt
 
 # 입력값 설정
 import sys
@@ -24,14 +20,24 @@ for i in range(N-1):
     tree[a].append(b)
     tree[b].append(a)
 
-# DFS 탐색하면서 리프 노드까지의 거리 cnt를 sum_cnt에 더한다.
-visited = [0] * (N+1)
-visited[1] = 1
-sum_cnt = 0
-DFS(1, 0)
+# print(tree) len 1인게 리프 노드
+[[], [8, 4, 3], [3], [1, 2], [1, 7, 6], [6], [4, 5], [4], [1]]
 
-# sum_cnt가 홀수이면 선공이 이긴다.
-if sum_cnt % 2:
+# DFS 탐색하며 정점부터의 거리 cnt를 센다.
+visited = [0] * (N + 1)
+DFS(1, 1)
+
+# visited에 cnt값이 저장된다.
+[0, 1, 3, 2, 2, 4, 3, 3, 2]
+
+# 각 리프 노드에서 cnt 값을 더한다.
+cnt = 0
+for i in range(2, N+1):
+    if len(tree[i]) == 1:
+        cnt += (visited[i]-1)
+
+# cnt가 홀수이면 선공이 이긴다.
+if cnt % 2:
     print('Yes')
 else:
     print('No')
