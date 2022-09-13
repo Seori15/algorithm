@@ -33,7 +33,7 @@ for i in range(N):
 
 # chicken_distance = [[1, 2, 2, 2],
 #	 				  [2, 3, 1, 1],
-#					  [6, 3, 5, 3]]    -> 행 = 집(1)  열 = 치킨집(2)
+#					  [6, 3, 5, 3]]    -> 행 = 치킨집(2) 열 = 집(1)
 
 house = len(chicken_distance[0])
 restaurant = len(chicken_distance)
