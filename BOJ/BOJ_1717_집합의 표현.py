@@ -1,5 +1,7 @@
+# 내장함수 import
 from sys import stdin, setrecursionlimit
 setrecursionlimit(10**8)
+
 # find 함수 설정
 # 재귀를 통해 합집합의 가장 작은 parent 번호를 불러온다.
 def find(n):

@@ -1,6 +1,8 @@
+# 크루스칼 알고리즘 풀이
+# 내장함수 import
 from sys import stdin, setrecursionlimit
 setrecursionlimit(10**8)
-# 크루스칼 알고리즘 풀이
+
 # find 함수 설정
 # 재귀를 통해 합집합의 가장 작은 parent 번호를 불러온다.
 def find(n):
@@ -40,10 +42,10 @@ for (A, B, C) in edges:
 print(result)
 
 ----------------------------------------------------------------
-
-from sys import stdin
 # 메모리 초과
 # 복습할 겸 프림 알고리즘 풀이
+from sys import stdin
+
 def prim2(r, V):
     MST = [0]*(V+1) # MST에 연결되어 있는지 여부 == visited
     MST[r] = 1      # 시작 노드를 MST 연결 처리
