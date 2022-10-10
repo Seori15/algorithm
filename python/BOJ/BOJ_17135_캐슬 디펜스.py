@@ -1,6 +1,6 @@
 # 궁수의 공격 대상을 찾는 target 함수 설정
 def target(n):
-    minV = 31
+    minV = 100
     target = 0
     for enemy in enemies2:
         distance = abs(enemy[0] - N) + abs(enemy[1] - n)
@@ -50,11 +50,10 @@ for i in range(N):
 
 # 적의 좌표값 저장하기
 enemies = []
-for i in range(N):
-    for j in range(M-1, -1, -1):
+for j in range(M-1, -1, -1):
+    for i in range(N):
         if arr[i][j] == 1:
             enemies.append([i, j])
-print(enemies)
 
 # 궁수 배치의 경우의 수를 조합으로 구현
 from itertools import combinations
