@@ -51,7 +51,7 @@ dj = [0, 0, -1, 1] # 상하좌우
 # [B] dfs 함수 설정
 def dfs(i, j, n, sumV):
     global result
-    # [B-1] 가지치기 조건.
+    # [B-1] 가지치기 조건. 아무리 max를 더해도 result보다 작을 때
     if result > sumV + maxV * (4 - n):
         return
     # [B-2] 종료 조건. 4개의 정사각형을 더했다면 result값과 비교
