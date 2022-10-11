@@ -60,7 +60,7 @@ def dfs(i, j, n, sumV):
             result = sumV
         return
 
-    # [B-3] 상하좌우 방향대로 bfs 탐색
+    # [B-3] 상하좌우 방향대로 dfs 탐색
     for dr in range(4):
         ni, nj = i+di[dr], j+dj[dr]
         if 0 <= ni < N and 0 <= nj < M and not visited[ni][nj]:
@@ -80,7 +80,7 @@ paper = [[] for _ in '_'*N]
 for i in range(N):
     paper[i] = list(map(int, stdin.readline().split()))
 
-# [2] bfs 탐색
+# [2] dfs 탐색
 result = 0
 maxV = max(map(max, paper))
 visited = [[0]*M for _ in '_'*N]
