@@ -1,3 +1,4 @@
+# 브루트포스 풀이
 '''
 주어진 테트로미노를 회전, 대칭하여 만들어지는 가지수는 총 19종류이다.
 문제에서 주어지는 종이를 2중 for문으로 탐색하면서, 주어진 테트로미노 형태의 숫자 합계를 비교한다.
@@ -38,5 +39,55 @@ for i in range(N):
                         # 총 4개의 수를 더했다면 result값과 비교
                         if result < sumV:
                             result = sumV
+
+print(result)
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+# DFS 풀이
+# [A] delta 방향 설정
+di = [-1, 1, 0, 0]
+dj = [0, 0, -1, 1] # 상하좌우
+
+# [B] dfs 함수 설정
+def dfs(i, j, n, sumV):
+    global result
+    # [B-1] 가지치기 조건.
+    if result > sumV + maxV * (4 - n):
+        return
+    # [B-2] 종료 조건. 4개의 정사각형을 더했다면 result값과 비교
+    if n == 4:
+        if result < sumV:
+            result = sumV
+        return
+
+    # [B-3] 상하좌우 방향대로 bfs 탐색
+    for dr in range(4):
+        ni, nj = i+di[dr], j+dj[dr]
+        if 0 <= ni < N and 0 <= nj < M and not visited[ni][nj]:
+            if n == 2: # [B-4] 이 조건을 넣지 않으면 'ㅏ' 블럭이 만들어지지 않는다.
+                visited[ni][nj] = 1
+                dfs(i, j, n+1, sumV + paper[ni][nj])
+                visited[ni][nj] = 0
+
+            visited[ni][nj] = 1
+            dfs(ni, nj, n+1, sumV + paper[ni][nj])
+            visited[ni][nj] = 0
+
+# [1] 입력값 설정
+from sys import stdin
+N, M = map(int, stdin.readline().split())
+paper = [[] for _ in '_'*N]
+for i in range(N):
+    paper[i] = list(map(int, stdin.readline().split()))
+
+# [2] bfs 탐색
+result = 0
+maxV = max(map(max, paper))
+visited = [[0]*M for _ in '_'*N]
+for i in range(N):
+    for j in range(M):
+        visited[i][j] = 1
+        dfs(i, j, 1, paper[i][j])
+        visited[i][j] = 0
 
 print(result)
